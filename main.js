@@ -733,6 +733,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       document.querySelector(".overlay").remove();
       // Убираем класс active с обертки оверлея
       modalContainer.classList.remove("active");
+      document.body.classList.remove("modal-active");
     }
   }
 
