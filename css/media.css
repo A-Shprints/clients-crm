@@ -1,0 +1,35 @@
+@media (max-width: 768px) {
+  .container {
+    padding: 0;
+  }
+
+  .inputs-wrapper {
+    margin: 0 15px 15px 15px;
+  }
+
+  .all-contacts-wrapper {
+    padding: 0 15px;
+  }
+
+  .table-wrapper {
+    overflow-x: auto;
+  }
+
+  h1 {
+    margin-left: 15px;
+  }
+
+  h1,
+  h2 {
+    margin-left: 15px;
+  }
+
+  .client-id-info {
+    display: block;
+    position: unset;
+    font-size: 12px;
+    color: #b0b0b0;
+    margin-left: 15px;
+    margin-bottom: 20px;
+  }
+}
