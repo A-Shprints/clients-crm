@@ -1165,6 +1165,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     // Убираем класс active с обертки оверлея
     modalContainer.classList.remove("active");
+    document.body.classList.remove("modal-active");
   };
 
   // @note Раздел сортировка
