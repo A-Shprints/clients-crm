@@ -47,9 +47,12 @@ document.addEventListener("DOMContentLoaded", async function () {
   const validationErrorEmpty = "";
 
   // Получаем базу клиентов с сервера
-  let clientsListResponse = await fetch("http://localhost:3000/api/clients", {
-    method: "GET",
-  });
+  let clientsListResponse = await fetch(
+    "https://clients-crm-d4240a57da57.herokuapp.com/api/clients",
+    {
+      method: "GET",
+    }
+  );
   // Преобразуем ответ сервера в json
   let clientsList = await clientsListResponse.json();
 
@@ -233,7 +236,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       // @func удаления клиента
 
       const response = await fetch(
-        `http://localhost:3000/api/clients/${clientId}`,
+        `https://clients-crm-d4240a57da57.herokuapp.com/api/clients/${clientId}`,
         {
           method: "DELETE",
         }
@@ -241,7 +244,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       // После успешного удаления записи о клиенте
 
       const updatedClientsResponse = await fetch(
-        "http://localhost:3000/api/clients"
+        "https://clients-crm-d4240a57da57.herokuapp.com/api/clients"
       );
       const updatedClientsList = await updatedClientsResponse.json();
       // Очищаем таблицу
@@ -320,7 +323,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     // Получаем данные с сервера
     const response = await fetch(
-      `http://localhost:3000/api/clients/${clientId}`
+      `https://clients-crm-d4240a57da57.herokuapp.com/api/clients/${clientId}`
     );
     const clientData = await response.json();
     let modalWindow = document.getElementById("modal-window");
@@ -622,7 +625,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     showOverlayAndSpinner();
     // Получаем данные с сервера
     const responseSecond = await fetch(
-      `http://localhost:3000/api/clients/${clientId}`
+      `https://clients-crm-d4240a57da57.herokuapp.com/api/clients/${clientId}`
     );
     const clientData = await responseSecond.json();
     const userContactsData = Array.from(
@@ -682,7 +685,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     // Отправляем на сервер обновленные данные
 
     const response = await fetch(
-      `http://localhost:3000/api/clients/${clientId}`,
+      `https://clients-crm-d4240a57da57.herokuapp.com/api/clients/${clientId}`,
       {
         method: "PATCH",
         body: JSON.stringify(changedClient),
@@ -714,7 +717,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       clientTable.innerHTML = "";
       // Обновляем данные с серевра
       const updatedClientsListResponse = await fetch(
-        "http://localhost:3000/api/clients",
+        "https://clients-crm-d4240a57da57.herokuapp.com/api/clients",
         {
           method: "GET",
         }
@@ -1109,18 +1112,21 @@ document.addEventListener("DOMContentLoaded", async function () {
     });
 
     // Отправляем данные на сервер
-    const response = await fetch("http://localhost:3000/api/clients", {
-      method: "POST",
-      body: JSON.stringify({
-        surname: inputSurnameValue,
-        name: inputNameValue,
-        lastName: inputLastNameValue,
-        contacts: contactsData,
-      }),
-      headers: {
-        "Content-type": "application/json",
-      },
-    });
+    const response = await fetch(
+      "https://clients-crm-d4240a57da57.herokuapp.com/api/clients",
+      {
+        method: "POST",
+        body: JSON.stringify({
+          surname: inputSurnameValue,
+          name: inputNameValue,
+          lastName: inputLastNameValue,
+          contacts: contactsData,
+        }),
+        headers: {
+          "Content-type": "application/json",
+        },
+      }
+    );
 
     // Скрываем модальное окно
     modalWindow.classList.add("display-none");
@@ -1139,7 +1145,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     clientTable.innerHTML = "";
     // Обновляем данные с серевра
     const updatedClientsListResponse = await fetch(
-      "http://localhost:3000/api/clients",
+      "https://clients-crm-d4240a57da57.herokuapp.com/api/clients",
       {
         method: "GET",
       }
@@ -1456,7 +1462,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     // @func поиска
     if (searchValue.trim()) {
       const response = await fetch(
-        `http://localhost:3000/api/clients?search=${searchValue}`,
+        `https://clients-crm-d4240a57da57.herokuapp.com/api/clients?search=${searchValue}`,
         {
           method: "GET",
         }
@@ -1468,7 +1474,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       renderClients(searchResult);
     } else {
       const response = await fetch(
-        `http://localhost:3000/api/clients?search=${searchValue}`,
+        `https://clients-crm-d4240a57da57.herokuapp.com/api/clients?search=${searchValue}`,
         {
           method: "GET",
         }
