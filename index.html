@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="stylesheet" href="./css/media.css" />
     <script defer src="./js/choices.min.js"></script>
+    <script defer src="./js/inputmask.js"></script>
     <script defer src="main.js"></script>
   </head>
   <body>
@@ -17,7 +18,7 @@
 
         <div class="header">
           <div>
-          <a href="https://a-shprints.github.io/clients-crm/">
+          <a href="http://127.0.0.1:5500/index.html">
             <img src="./img/logo.svg" width="50px" height="50px"
           /></div></a>
           <div class="search-wrapper">
@@ -72,7 +73,7 @@
     </div>
       <button id="add-button"><span class="add-button-text">Добавить клиента</span></button>
       <div id="modal-container">
-        <div id="modal-background">
+
           <div id="modal-window" class="display-none">
             <h2>Новый клиент</h2>
             <button class="close-button"><span class="cross-line"></span><span class="cross-line"></span></button>
@@ -105,7 +106,7 @@
                   Добавить контакт</span>
                 </button>
               </div>
-              <div id="errors-container"></div>
+
               
               <button id="new-client-button" type="button" class="display-none">
                 Новый клиент
@@ -117,10 +118,22 @@
               >
                 Сохранить
               </button>
+              <div id="errors-container"></div>
 
             </form>
-          </div>
+          
         </div>
+
+      </div>
+      <div id="modal-container-delete">
+
+
+        <h2>Удалить клиента</h2>
+          <p>Вы действительно хотите удалить данного клиента?</p>
+          <button class="delete-button-inside-modal">Удалить</button>
+
+        </div>
+
       </div>
     </div>
     </main>
