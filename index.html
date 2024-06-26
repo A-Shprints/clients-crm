@@ -10,76 +10,88 @@
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="stylesheet" href="./css/media.css" />
     <script defer src="./js/choices.min.js"></script>
+    <script defer src="./js/inputmask.js"></script>
     <script defer src="main.js"></script>
   </head>
   <body>
     <nav>
-
-        <div class="header">
-          <div>
-          <a href="https://a-shprints.github.io/clients-crm/">
+      <div class="header">
+        <div>
+          <a href="http://127.0.0.1:5500/index.html">
             <img src="./img/logo.svg" width="50px" height="50px"
-          /></div></a>
-          <div class="search-wrapper">
-            <input
-              id="search-input"
-              class="search-input"
-              type="text"
-              placeholder="Введите запрос"
-            />
-            <div class="search-preview-wrapper">
-              <ul id="search-preview" class="search-preview"></ul>
-            </div>
+          /></a>
+        </div>
+        <div class="search-wrapper">
+          <input
+            id="search-input"
+            class="search-input"
+            type="text"
+            placeholder="Введите запрос"
+          />
+          <div class="search-preview-wrapper">
+            <ul id="search-preview" class="search-preview"></ul>
           </div>
         </div>
-
+      </div>
     </nav>
     <main>
       <div class="container">
-      <h1>Клиенты</h1>
-      <div class="table-wrapper">
-      <table>
-        <thead>
-          <tr>
-            <th scope="col" class="heading-cell">
-              <button id="sort-by-id-button" class="table-heading-button sorting-now sorting-asc">
-                ID<span class="sorting-arrow"></span>
-              </button>
-            </th>
-            <th scope="col" class="heading-cell">
-              <button class="table-heading-button"  id="sort-by-name-button">
-                Фамилия Имя Отчество<span class="sorting-arrow"></span
-                ><span id="sorting-descr">А–Я</span>
-              </button>
-            </th>
-            <th scope="col" class="heading-cell">
-              <button id="sort-by-created-button" class="table-heading-button">
-                Дата и время создания<span class="sorting-arrow"></span>
-              </button>
-            </th>
-            <th scope="col" class="heading-cell">
-              <button id="sort-by-updated-button" class="table-heading-button">
-                Последние изменения<span class="sorting-arrow"></span>
-              </button>
-            </th>
-            <th scope="col" class="heading-cell">Контакты</th>
-            <th scope="col" class="heading-cell">Действия</th>
-            <th scope="col" class="heading-cell">Ссылка</th>
-          </tr>
-        </thead>
-        <tbody id="client-table"></tbody>
-      </table>
-    </div>
-      <button id="add-button"><span class="add-button-text">Добавить клиента</span></button>
-      <div id="modal-container">
-        <div id="modal-background">
+        <h1>Клиенты</h1>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col" class="heading-cell">
+                  <button
+                    id="sort-by-id-button"
+                    class="table-heading-button sorting-now sorting-asc"
+                  >
+                    ID<span class="sorting-arrow"></span>
+                  </button>
+                </th>
+                <th scope="col" class="heading-cell">
+                  <button class="table-heading-button" id="sort-by-name-button">
+                    Фамилия Имя Отчество<span class="sorting-arrow"></span
+                    ><span id="sorting-descr">А–Я</span>
+                  </button>
+                </th>
+                <th scope="col" class="heading-cell">
+                  <button
+                    id="sort-by-created-button"
+                    class="table-heading-button"
+                  >
+                    Дата и время создания<span class="sorting-arrow"></span>
+                  </button>
+                </th>
+                <th scope="col" class="heading-cell">
+                  <button
+                    id="sort-by-updated-button"
+                    class="table-heading-button"
+                  >
+                    Последние изменения<span class="sorting-arrow"></span>
+                  </button>
+                </th>
+                <th scope="col" class="heading-cell">Контакты</th>
+                <th scope="col" class="heading-cell">Действия</th>
+                <th scope="col" class="heading-cell">Ссылка</th>
+              </tr>
+            </thead>
+            <tbody id="client-table"></tbody>
+          </table>
+        </div>
+        <button id="add-button">
+          <span class="add-button-text">Добавить клиента</span>
+        </button>
+        <div id="modal-container">
           <div id="modal-window" class="display-none">
             <h2>Новый клиент</h2>
-            <button class="close-button"><span class="cross-line"></span><span class="cross-line"></span></button>
+            <button class="close-button">
+              <span class="cross-line"></span><span class="cross-line"></span>
+            </button>
             <form class="form">
               <div class="inputs-wrapper">
                 <div>
-                  <label class="label-required">Фамилия</label><br>
+                  <label class="label-required">Фамилия</label><br />
                   <input
                     type="text"
                     id="input-surname"
@@ -88,25 +100,30 @@
                   />
                 </div>
                 <div>
-                  <label class="label-required">Имя</label><br>
-                  <input type="text" id="input-name" placeholder="Иван" required />
+                  <label class="label-required">Имя</label><br />
+                  <input
+                    type="text"
+                    id="input-name"
+                    placeholder="Иван"
+                    required
+                  />
                 </div>
                 <div>
-                  <label>Отчество</label><br>
-                  <input type="text" id="input-lastname" placeholder="Иванович" />
+                  <label>Отчество</label><br />
+                  <input
+                    type="text"
+                    id="input-lastname"
+                    placeholder="Иванович"
+                  />
                 </div>
               </div>
               <div class="all-contacts-outer-wrapper">
-                <div class="all-contacts-wrapper">
-
-                </div>
+                <div class="all-contacts-wrapper"></div>
                 <button id="add-contact-button" type="button">
-                  <span class="add-contact-button-text">
-                  Добавить контакт</span>
+                  <span class="add-contact-button-text"> Добавить контакт</span>
                 </button>
               </div>
-              <div id="errors-container"></div>
-              
+
               <button id="new-client-button" type="button" class="display-none">
                 Новый клиент
               </button>
@@ -117,12 +134,18 @@
               >
                 Сохранить
               </button>
-
+              <div id="errors-container"></div>
             </form>
           </div>
         </div>
+        <div id="modal-container-delete">
+          <div id="modal-window-delete">
+            <h2>Удалить клиента</h2>
+            <p>Вы действительно хотите удалить данного клиента?</p>
+            <button class="delete-button-inside-modal">Удалить</button>
+          </div>
+        </div>
       </div>
-    </div>
     </main>
   </body>
 </html>
