@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", async function () {
   // Раздел объявления переменных
   // Адрес сервера
-  const serverAddress = "http://localhost:3000";
+  const serverAddress = "https://clients-crm-d4240a57da57.herokuapp.com";
 
   // Определяем таблицу
   const clientTable = document.getElementById("client-table");
@@ -280,10 +280,8 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   newClientButton.addEventListener("click", async function (e) {
     e.preventDefault();
-    console.log("Нажатие на кнопку Новый клиент");
     // Собираем все инпуты в модальном окне
     inputsToValidate = gatherCurrentData();
-    console.log("inputsToValidate = ", inputsToValidate);
 
     // Запускаем функцию валидации
     validateInputs(inputsToValidate);
@@ -313,8 +311,6 @@ document.addEventListener("DOMContentLoaded", async function () {
         };
       });
 
-      console.log("contactsData = ", contactsData);
-
       // Отправляем данные на сервер
 
       const response = await fetch(`${serverAddress}/api/clients`, {
@@ -342,8 +338,11 @@ document.addEventListener("DOMContentLoaded", async function () {
       clientTable.append(clientRow);
       fillRowWithClientData(clientRow, newClient);
 
-      // @todo Закрываем окно только если валидация пройдена (может это запихнуть в функцию валидации?)
+      // Закрываем окно только если валидация пройдена
       closeModalWindow();
+
+      // Восстанавливаем работоспособность кнопки раскрытия контактов
+      handleShowMoreContactsButton();
     }
   });
 
@@ -366,9 +365,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   }
 
   async function handleDeleteClientClick(clickedButton, clientId) {
-    console.log("Клик на кнопку удалить в таблице");
     currentCliendId = clientId;
-    console.log("currentCliendId", clientId);
     // Добавляем класс clicked на кнопку
     clickedButton.classList.add("clicked");
     // Показываем модальное окно удаления клиента
@@ -407,6 +404,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     cancelButton.textContent = "Отмена";
     modalWindowDelete.append(cancelButton);
     cancelButton.addEventListener("click", function () {
+      // Клик на кнопку Отмена
       closeModalWindowDelete();
     });
   }
@@ -522,15 +520,12 @@ document.addEventListener("DOMContentLoaded", async function () {
             fillRowWithClientData(clientRow, changedClientData);
             // Закрываем модальное окно
             closeModalWindow();
-          } catch (error) {
-            console.error("Ошибка при сохранении данных на сервере:", error);
-          }
+          } catch (error) {}
         } else {
           validationErrorsContainer.textContent =
             "Данные клиента не изменились по сравнению с текущими данными";
         }
       } else {
-        console.log("Данные не изменились");
         validationErrorsContainer.textContent = "Данные клиента не изменились";
       }
     });
@@ -640,7 +635,6 @@ document.addEventListener("DOMContentLoaded", async function () {
       applyMailMask(contactInput);
     } else {
       removeMask(contactInput);
-      console.log("Снимаем маску");
     }
   }
 
@@ -881,6 +875,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     modalWindowDelete.classList.add("display-none");
     modalContainerDelete.classList.remove("active");
     document.body.classList.remove("modal-active");
+    modalWindowDelete.querySelector(".cancel-button").remove();
   }
 
   function renderClients(clientsList) {
@@ -1347,7 +1342,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     "input",
     debounce(function () {
       fetchSearchData(this.value).then(() => {
-        console.log("Инпут в поиск");
         handleShowMoreContactsButton();
       });
     }, 300)
@@ -1412,13 +1406,11 @@ document.addEventListener("DOMContentLoaded", async function () {
   handleShowMoreContactsButton();
 
   function handleShowMoreContactsButton() {
-    console.log("Запустилась функция handleShowMoreContactsButton");
     const showMoreContactsButton = document.querySelectorAll(
       ".show-more-contacts-btn"
     );
     showMoreContactsButton.forEach((button) => {
       button.addEventListener("click", function () {
-        console.log("КЛик на кнопку showMoreContactsButton");
         let parentRow = this.closest("tr");
         parentRow.querySelectorAll(".contact-hidden").forEach((contact) => {
           contact.classList.remove("contact-hidden");
